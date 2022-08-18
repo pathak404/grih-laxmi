@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+    <title>GRIH LAXMI - Login</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            -webkit-text-size-adjust: 100%;
+            background: #f8f8f8;
+            -webkit-tap-highlight-color: transparent;
+            color: #2c2c2c;
+            font-size: 14px;
+            font-family: "montserrat", sans-serif;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: grid;
+            place-items: center;
+            padding: 0 10px;
+        }
+
+        /* back to home */
+        div.backHome {
+            position: absolute;
+            top: 30px;
+            left: 8px;
+        }
+
+        div.backHome a {
+            display: block;
+            position: relative;
+            top: 3px;
+            padding-left: 20px;
+            text-decoration: none;
+            color: rgb(27, 26, 26);
+            font-family: 'montserrat', sans-serif;
+            ;
+        }
+
+        div.backHome::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            width: 24px;
+            height: 24px;
+            background-image: url(/auth/chevron-left.svg);
+            background-repeat: no-repeat;
+        }
+
+
+        div.container {
+            width: 100%;
+            max-width: 500px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: baseline;
+            flex-direction: column;
+            background-color: #ffffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+            color: #252422;
+            position: relative;
+            border: 0;
+            padding: 40px 10px;
+        }
+
+        div.container h2 {
+            padding: 0 0 20px;
+        }
+
+        form#loginForm {
+            width: 100%;
+            display: block;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            width: 100%;
+            display: grid;
+            place-items: center;
+            padding: 0 15px;
+        }
+
+        form input,
+        form textarea,
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 10px 0;
+            outline: none;
+            background-color: #ffffff;
+            border: 3px solid #d8d6d4;
+            font-family: 'poppins', sans-serif;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border: 3px solid rgb(224, 194, 94);
+        }
+
+        form textarea {
+            resize: none;
+        }
+
+        form input[type="submit"] {
+            background-color: rgb(211, 177, 66);
+            justify-self: center;
+            max-width: 150px;
+            cursor: pointer;
+            border: none;
+            padding: 13px 15px;
+        }
+        #errordiv{
+            display: none;
+            margin-bottom: 10px;
+        }
+        #errordiv p {
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 10px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="backHome"><a href="/">Back to home</a></div>
+    <div class="container">
+        <h2>Login</h2>
+        <div id="errordiv"><p></p></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" name="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyAsyIQlIDYB9Ns6yzyqxfHHt84KF5lgiiI",
+            authDomain: "grihlakxmi.firebaseapp.com",
+            projectId: "grihlakxmi",
+            storageBucket: "grihlakxmi.appspot.com",
+            messagingSenderId: "240407187677",
+            appId: "1:240407187677:web:01f5edc603bbd3fff4cb34"
+        };
+        firebase.initializeApp(config);
+
+        document.getElementById('loginForm').addEventListener('submit', formSubmit);
+        function formSubmit(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var email = document.querySelector('#email').value;
+            var password = document.querySelector('#password').value
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    var user = userCredential.user;
+                    // console.log(user.email);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorMessage);
+                    document.getElementById('errordiv').style.display = "block";
+                    document.querySelector('#errordiv p').innerHTML = errorMessage;
+                });
+        }
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                window.location = 'https://grih-laxmi.com/dealershipdata/';
+            }
+        });
+
+        // document.querySelector('#sign-out').addEventListener('click', function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     firebase.auth().signOut();
+        // });
+    </script>
+</body>
+
+</html>

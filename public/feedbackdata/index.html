@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/feedbackdata/style.css">
+  <title>GRIH LAXMI - Feedback Data</title>
+</head>
+
+<body>
+  <div class="backHome"><a href="https://grih-laxmi.com/dealershipdata/">Go to Dealership Data Page</a></div>
+  <section class="data">
+    <div class="conatiner">
+      <h2>Feedback Data</h2>
+      <table class="dataTable">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+
+
+  <!-- data modal -->
+  <div id="modal-viewdata">
+    <div class="modal-background">
+      <div class="modal">
+        <div class="modalupper">
+          <div id="closeModal"></div>
+        </div>
+        <div class="modalContainer">
+          <table class="viewTable">
+            <h3 class="dataid"></h3>
+            <tr>
+              <th>Name</th>
+              <td class="uname"></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td class="umail"></td>
+            </tr>
+          </table>
+          <table class="viewMessage">
+            <tr>
+              <th>Messsage</th>
+            </tr>
+            <tr>
+              <td class="mess"></td>
+            </tr>
+          </table>
+          <div class="closeModal2">
+            <div class="deletedata">Delete</div>
+            <div class="closemodalbtn">Close</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="/feedbackdata/getdata.js"></script>
+</body>
+</html>

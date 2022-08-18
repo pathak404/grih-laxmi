@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dealership/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <title>GRIH LAXMI - Dealership</title>
+</head>
+
+<body>
+    <section class="dealership">
+        <div class="bc-image"></div>
+        <div class="conatiner">
+            <div class="backHome"><a href="/">Back to home</a></div>
+            <div class="FormPart">
+                <div class="fbForm">
+                    <div class="heading">
+                        <h2>Dealership</h2>
+                    </div>
+                    <form method="post" id="dealershipform" name="dealershipform">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" id="wnumber" maxlength="10" pattern="[0-9]{1}[0-9]{9}" placeholder="Whatsapp number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="shopaddress" placeholder="Your Shop Address" required>
+                        </div>
+
+                        <div class="form-group">
+                        <select id="usertype">
+                        <option value="0" disabled selected>I'm a -- Please Select</option>
+                        <option value="wholesaler">Wholesaler</option>
+                        <option value="semiwholesaler">Semi Wholesaler</option>
+                        <option value="retailer">Retailer</option>
+                        </select>
+                        </div>
+        
+                        <div class="form-group">
+                        <textarea cols="30" rows="8" id="message" placeholder="Your message" required></textarea>
+                        </div>
+        
+                        <div class="form-group">
+                        <input type="submit" value="Send">
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="imgdiv">
+                    <img src="/dealership/wheat.svg" alt="">
+                </div>
+            </div>
+
+
+
+            <div id="alert">
+                <div class="modalbg">
+                    <div class="modal">
+                        <div class="modalcontainer">
+                            <div id="loader"></div>
+                            <div id="alertmessage">
+                                Your details have been sent successfully!
+                            </div>
+                            <span id="closealert">Close</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="/dealership/main.js"></script>
+
+
+</body>
+</html>
