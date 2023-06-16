@@ -11,9 +11,10 @@ A web project of UMA SHREE AGRO PRODUCTS, describes about the company & their pr
 
 
 
+
+
 ## Features
 - Product Showcase
 - Dealership
 - Feedback
-- Admin Dashboard
 - Fully Responsive Layouts
